@@ -1,0 +1,7 @@
+DOOM_57.png : 57, 57
+DOOM_114.png : 114, 114
+DOOM_72.png : 72, 72
+Default@2x.png : 640, 960
+Default~ipad.png : 768, 1004
+Default-Portrait~ipad.png : 768, 1004
+Default-Landscape~ipad.png : 1024, 748

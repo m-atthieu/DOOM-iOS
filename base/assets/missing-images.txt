@@ -1,0 +1,38 @@
+# PK_Find(Texture|Wav)
+# SetButtonPics
+# SetButtonPicsAndSizes
+# SetHudPic
+# Sound_StartLocalSound
+iphone/arialImageLAL.tga
+iphone/back_button.tga : 64, 64
+iphone/config_1.tga : 96, 64
+iphone/config_2.tga : 96, 64
+iphone/config_3.tga : 96, 64
+iphone/co-op.tga : 96, 96
+iphone/deathmatch.tga : 96, 96
+iphone/kills.tga : 
+iphone/livetile_1.tga : 
+iphone/loading.tga : 
+iphone/load_saved.tga : 
+iphone/long_string_box.tga : 
+iphone/multi_backdrop.tga : 
+iphone/multi_face.tga : 
+iphone/multi_frame.tga : 
+iphone/multiplay.tga : 
+iphone/par.tga : 
+iphone/respawn_gear.tga : 
+iphone/respawn.tga : 
+iphone/secrets.tga : 
+iphone/skill_easy.tga : 
+iphone/skill_hard.tga : 
+iphone/skill_nightmare.tga : 
+iphone/skill_normal.tga : 
+iphone/slider_bar.tga : 
+iphone/slider_shadow.tga : 
+iphone/up_down.tga : 
+iphone/side_2_side.tga : 
+iphone/directional_2.tga : 
+iphone/rotate.tga : 
+iphone/fire.tga : 
+iphone/menu_button.tga : 
+iphone/map_button.tga : 
