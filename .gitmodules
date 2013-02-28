@@ -1,0 +1,3 @@
+[submodule "base/freedoom"]
+	path = base/freedoom
+	url = git@github.com:furai/freedoom.git
