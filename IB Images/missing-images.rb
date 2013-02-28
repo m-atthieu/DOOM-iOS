@@ -26,7 +26,7 @@ File.readlines('missing-images.txt').each do |line|
         bgcolor = 'wheat'
     end
 
-    cmd = "echo '#{bn}' | convert -set title 'dummy' -size #{size[0]}x#{size[1]} -page #{size[0]}x#{size[1]}+2+2 -border 1x1 -bordercolor grey -background #{bgcolor} -fill black -pointsize 12 text:- +repage #{name}"
+    cmd = "echo '#{bn}' | convert -set title 'dummy' -size #{size[0]-1}x#{size[1]-1} -page #{size[0]-2}x#{size[1]-2}+2+2 -border 1x1 -bordercolor grey -background #{bgcolor} -fill black -pointsize 12 text:- +repage #{name}"
     if dummy != '' or not File.exists?(name) then
         system cmd
     end
