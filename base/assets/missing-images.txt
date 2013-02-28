@@ -3,7 +3,7 @@
 # SetButtonPicsAndSizes
 # SetHudPic
 # Sound_StartLocalSound
-iphone/arialImageLAL.tga
+iphone/arialImageLAL.tga : 
 iphone/back_button.tga : 64, 64
 iphone/config_1.tga : 96, 64
 iphone/config_2.tga : 96, 64
