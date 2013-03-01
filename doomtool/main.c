@@ -53,9 +53,9 @@ typedef unsigned char byte;
 
 #include "doomtool.h" 
 
-const char *assetDirectory = "/Volumes/Work/idMobileDepot/Archive/DoomClassicDepot/assets";
-const char *outputFile = "/Volumes/Work/idMobileDepot/Archive/DoomClassicDepot/base.iPack";
-const char *parmFile = "/Volumes/Work/idMobileDepot/Archive/DoomClassicDepot/base.parm";
+const char *assetDirectory = "../base/assets";
+const char *outputFile = "../base/base.iPack";
+const char *parmFile = "../base/base.parm";
 
 pkHeader_t	buildHeader;
 FILE		*pakFile;
