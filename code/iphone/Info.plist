@@ -17,17 +17,19 @@
 		<string>DOOM_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.idsoftware.${PRODUCT_NAME:identifier}</string>
+	<string>fr.desile.free${PRODUCT_NAME:identifier}2</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.1</string>
+	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
