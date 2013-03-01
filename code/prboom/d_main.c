@@ -126,6 +126,7 @@ char    basesavegame[PATH_MAX+1];  // killough 2/16/98: savegame directory
 //jff 4/19/98 list of standard IWAD names
 const char *const standard_iwads[]=
 {
+    "doom2.wad", /* as seen in freedoom */
   "doom2f.wad",
   "HERETIC.WAD",
   "plutonia.wad",

@@ -25,12 +25,12 @@ Episode4Background_Highlighted.png : 320, 79
 LayoutDualButton.png : 123, 85
 LayoutDualButton_Highlighted.png  : 123, 85
 LayoutSingleButton.png : 123, 85
-LayoutSingleButton_Hightlighted.png : 123, 85
+LayoutSingleButton_Highlighted.png : 123, 85
 LayoutWheelButton.png : 123, 85
 LayoutWheelButton_Highlighted.png : 123, 85
 #MapOverlay.png : 
 MenuBackground.png : 320, 480
-MissionBackground.png : 328, 181
+MissonBackground.png : 328, 181
 NextButton.png : 50, 50
 NextButton_Highlighted.png : 50, 50
 #ResumeButton.png : 

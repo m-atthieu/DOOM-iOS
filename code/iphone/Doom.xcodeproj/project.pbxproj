@@ -12,6 +12,7 @@
 		4333CCE80F5CC23E00AE2B6F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4333CCE70F5CC23E00AE2B6F /* AudioToolbox.framework */; };
 		434669A60F8D08C000EA7D6D /* doomAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 434669A50F8D08C000EA7D6D /* doomAppDelegate.m */; };
 		4364BF3F0F5CB25900F29317 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4364BF3E0F5CB25900F29317 /* dist.plist */; };
+		43779D4716E1666D0016635A /* MissonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C879308C13F5D8AA003D834F /* MissonBackground.png */; };
 		43A945150F82D75900FFD32E /* iphone_sys.c in Sources */ = {isa = PBXBuildFile; fileRef = 43A945140F82D75900FFD32E /* iphone_sys.c */; };
 		43CF02FF0F56974E00E4A23D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43CF02FE0F56974E00E4A23D /* Default.png */; };
 		43CF030A0F56D5C200E4A23D /* iphone_loop.c in Sources */ = {isa = PBXBuildFile; fileRef = 43CF03090F56D5C200E4A23D /* iphone_loop.c */; };
@@ -121,15 +122,12 @@
 		C81E0E5E13E076E400B1049A /* idGinzaNar-Md2.otf in Resources */ = {isa = PBXBuildFile; fileRef = C81E0E5D13E076E400B1049A /* idGinzaNar-Md2.otf */; };
 		C81E104C13E1CCA000B1049A /* BackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104013E1CCA000B1049A /* BackButton.png */; };
 		C81E104D13E1CCA000B1049A /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104113E1CCA000B1049A /* Button.png */; };
-		C81E104E13E1CCA000B1049A /* DOOM_sigil_decal.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104213E1CCA000B1049A /* DOOM_sigil_decal.png */; };
 		C81E104F13E1CCA000B1049A /* DoomLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104313E1CCA000B1049A /* DoomLogo.png */; };
 		C81E105013E1CCA000B1049A /* Easy.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104413E1CCA000B1049A /* Easy.png */; };
 		C81E105113E1CCA000B1049A /* Hard.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104513E1CCA000B1049A /* Hard.png */; };
-		C81E105213E1CCA000B1049A /* MapOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104613E1CCA000B1049A /* MapOverlay.png */; };
 		C81E105313E1CCA000B1049A /* Medium.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104713E1CCA000B1049A /* Medium.png */; };
 		C81E105413E1CCA000B1049A /* MenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104813E1CCA000B1049A /* MenuBackground.png */; };
 		C81E105513E1CCA000B1049A /* Nightmare.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104913E1CCA000B1049A /* Nightmare.png */; };
-		C81E105613E1CCA000B1049A /* ResumeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104A13E1CCA000B1049A /* ResumeButton.png */; };
 		C81E105713E1CCA000B1049A /* SelectedBracket.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E104B13E1CCA000B1049A /* SelectedBracket.png */; };
 		C84F829213D76E96006D01AB /* MapMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C84F829013D76E96006D01AB /* MapMenuView.m */; };
 		C84F83F613D7A99C006D01AB /* GenericMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C84F83F513D7A99C006D01AB /* GenericMenuView.m */; };
@@ -151,7 +149,6 @@
 		C879309313F5D8AA003D834F /* Episode2Background.png in Resources */ = {isa = PBXBuildFile; fileRef = C879308913F5D8AA003D834F /* Episode2Background.png */; };
 		C879309413F5D8AA003D834F /* Episode3Background.png in Resources */ = {isa = PBXBuildFile; fileRef = C879308A13F5D8AA003D834F /* Episode3Background.png */; };
 		C879309513F5D8AA003D834F /* Episode4Background.png in Resources */ = {isa = PBXBuildFile; fileRef = C879308B13F5D8AA003D834F /* Episode4Background.png */; };
-		C879309613F5D8AA003D834F /* MissonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C879308C13F5D8AA003D834F /* MissonBackground.png */; };
 		C879309713F5D8AA003D834F /* UpArrow_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C879308D13F5D8AA003D834F /* UpArrow_Highlighted.png */; };
 		C879309813F5D8AA003D834F /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C879308E13F5D8AA003D834F /* UpArrow.png */; };
 		C87930E513F5EC1B003D834F /* Episode1Background_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C87930E113F5EC1B003D834F /* Episode1Background_Highlighted.png */; };
@@ -921,6 +918,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43779D4716E1666D0016635A /* MissonBackground.png in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				43CF02FF0F56974E00E4A23D /* Default.png in Resources */,
 				4364BF3F0F5CB25900F29317 /* dist.plist in Resources */,
@@ -933,15 +931,12 @@
 				C81E0E5E13E076E400B1049A /* idGinzaNar-Md2.otf in Resources */,
 				C81E104C13E1CCA000B1049A /* BackButton.png in Resources */,
 				C81E104D13E1CCA000B1049A /* Button.png in Resources */,
-				C81E104E13E1CCA000B1049A /* DOOM_sigil_decal.png in Resources */,
 				C81E104F13E1CCA000B1049A /* DoomLogo.png in Resources */,
 				C81E105013E1CCA000B1049A /* Easy.png in Resources */,
 				C81E105113E1CCA000B1049A /* Hard.png in Resources */,
-				C81E105213E1CCA000B1049A /* MapOverlay.png in Resources */,
 				C81E105313E1CCA000B1049A /* Medium.png in Resources */,
 				C81E105413E1CCA000B1049A /* MenuBackground.png in Resources */,
 				C81E105513E1CCA000B1049A /* Nightmare.png in Resources */,
-				C81E105613E1CCA000B1049A /* ResumeButton.png in Resources */,
 				C81E105713E1CCA000B1049A /* SelectedBracket.png in Resources */,
 				C8D1CFA813E1CDBD00F0EAC6 /* Default-Portrait~ipad.png in Resources */,
 				C8D1CFAA13E1CDC600F0EAC6 /* Default-Landscape~ipad.png in Resources */,
@@ -959,7 +954,6 @@
 				C879309313F5D8AA003D834F /* Episode2Background.png in Resources */,
 				C879309413F5D8AA003D834F /* Episode3Background.png in Resources */,
 				C879309513F5D8AA003D834F /* Episode4Background.png in Resources */,
-				C879309613F5D8AA003D834F /* MissonBackground.png in Resources */,
 				C879309713F5D8AA003D834F /* UpArrow_Highlighted.png in Resources */,
 				C879309813F5D8AA003D834F /* UpArrow.png in Resources */,
 				C87930E513F5EC1B003D834F /* Episode1Background_Highlighted.png in Resources */,
@@ -999,7 +993,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -x";
-			shellScript = "PBXCP=${DEVELOPER_DIR}/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp\n${PBXCP} -exclude .svn \"${PROJECT_DIR}/../../base\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\n";
+			shellScript = "PBXCP=${DEVELOPER_DIR}/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp\n# ${PBXCP} -exclude .svn\nsource=\"${PROJECT_DIR}/../../base\"\ndest=\"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nmkdir -p $dest/base\ncp $source/base.iPack $dest/base\ncp $source/freedoom/wads/doom2.wad $dest/base/doom2.wad\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
