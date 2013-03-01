@@ -14,7 +14,9 @@ iphone/kills.tga :
 iphone/livetile_1.tga : 
 iphone/loading.tga : 
 iphone/load_saved.tga : 
+# for width > 128
 iphone/long_string_box.tga : 
+iphone/short_string_box.tga : 
 iphone/multi_backdrop.tga : 
 iphone/multi_face.tga : 
 iphone/multi_frame.tga : 
