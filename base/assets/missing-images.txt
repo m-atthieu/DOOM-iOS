@@ -33,8 +33,8 @@ iphone/slider_bar.tga :
 iphone/slider_shadow.tga : 
 iphone/up_down.tga : 
 iphone/side_2_side.tga : 
-iphone/directional_2.tga : 
+iphone/directional_2.tga : 256, 256
 iphone/rotate.tga : 
-iphone/fire.tga : 
-iphone/menu_button.tga : 
-iphone/map_button.tga : 
+iphone/fire.tga : 160, 160
+iphone/menu_button.tga : 96, 96
+iphone/map_button.tga : 96, 96
