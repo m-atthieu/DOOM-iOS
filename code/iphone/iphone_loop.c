@@ -861,7 +861,7 @@ void iphoneDrawNotifyText() {
 			return;
 		}
 	}
-	
+	Com_Printf("%s : %s", __PRETTY_FUNCTION__, notifyText);
 	glColor4f( 1, 1, 1, f );
 	iphoneCenterText( 240, 16, 0.75, notifyText );
 	glColor4f( 1, 1, 1, 1 );

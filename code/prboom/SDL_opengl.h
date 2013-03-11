@@ -79,8 +79,14 @@ typedef double GLdouble;
 // this is the internal format used by the prBoom gl code
 // ES doesn't allow format conversions between external and internal,
 // so we need to manually convert to 5551 before doing glTexSubImage
+#ifdef GL_RGB5_A1
+#  undef GL_RGB5_A1
+#endif
 #define GL_RGB5_A1	GL_RGBA
 #define GL_RGBA8	GL_RGBA
+#ifdef GL_RGBA4
+#  undef GL_RGBA4
+#endif
 #define GL_RGBA4	GL_RGBA
 #define GL_RGBA2	GL_RGBA
 

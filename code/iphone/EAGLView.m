@@ -37,26 +37,40 @@ EAGLContext *context;
 @implementation EAGLView
 
 // You must implement this method
-+ (Class)layerClass {
++ (Class) layerClass
+{
     return [CAEAGLLayer class];
 }
 
 float screenResolutionScale = 1.0f;
 
-CAEAGLLayer *eaglLayer;
+- (id) init
+{
+    self = [super init];
+    NSLog(@"%s init", __PRETTY_FUNCTION__);
+    [self initialize];
+    return self;
+}
 
 //The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
-- (id)initWithCoder:(NSCoder*)coder {
-    self = [super initWithCoder:coder];
-	
-	eaglview = self;
+- (id) initWithCoder: (NSCoder*) coder
+{
+    self = [super initWithCoder: coder];
+    NSLog(@"%s initWithCoder", __PRETTY_FUNCTION__);
+	[self initialize];
+    return self;
+}
+
+- (void) initialize
+{
+    eaglview = self;
 	
 	// allow multiple touch events
 	self.multipleTouchEnabled = true;
 	
     // Double the resolution on iPhone 4.
 	if ( [[UIScreen mainScreen] respondsToSelector:@selector(scale)] &&
-		[self respondsToSelector:@selector(setContentScaleFactor:)] ) {	
+		[self respondsToSelector:@selector(setContentScaleFactor:)] ) {
         
         screenResolutionScale = [UIScreen mainScreen].scale;
         
@@ -65,7 +79,7 @@ CAEAGLLayer *eaglLayer;
 	}
     
 	// Get the layer
-	eaglLayer = (CAEAGLLayer *)self.layer;
+	eaglLayer = (CAEAGLLayer *) self.layer;
 	
 	// set opaque so UIKit doesn't try to blend it over other layers
 	eaglLayer.opaque = YES;
@@ -73,31 +87,26 @@ CAEAGLLayer *eaglLayer;
 	// set it to no-backing-retained so it can do ast pageflips instead
 	// of update copies, and go to 565 bit depth for higher performance.
 	eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-									
-									[NSNumber numberWithBool:NO], 
-									kEAGLDrawablePropertyRetainedBacking, 
-									
-									kEAGLColorFormatRGB565,
-									/* kEAGLColorFormatRGBA8, */
-									kEAGLDrawablePropertyColorFormat, 
-									
-									nil];
+                                        [NSNumber numberWithBool: NO], kEAGLDrawablePropertyRetainedBacking,
+                                        kEAGLColorFormatRGB565, kEAGLDrawablePropertyColorFormat,
+                                        nil];
 	
 	context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
 	assert( context );
 	
-	if ( ![EAGLContext setCurrentContext:context]) {
+	if ( ![EAGLContext setCurrentContext: context]) {
 		[self release];
-		return nil;
-	}        
+        NSLog(@"%s : Cannot set EAGLContext", __PRETTY_FUNCTION__);
+		return ;//nil;
+	}
     
     glGenFramebuffersOES(1, &mViewFramebuffer);
     glGenRenderbuffersOES(1, &mViewRenderbuffer);
     
-	glBindFramebufferOES(GL_FRAMEBUFFER_OES, mViewFramebuffer);	
+	glBindFramebufferOES(GL_FRAMEBUFFER_OES, mViewFramebuffer);
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, mViewRenderbuffer);
     
-    [context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:(CAEAGLLayer*)self.layer];
+    [context renderbufferStorage: GL_RENDERBUFFER_OES fromDrawable: (CAEAGLLayer*) self.layer];
     
     glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER_OES, mViewRenderbuffer);
     
@@ -107,7 +116,7 @@ CAEAGLLayer *eaglLayer;
     
     displaywidth = backingHeight;
     displayheight = backingWidth;
-    
+    NSLog(@"%s displaywidth : %d displayheight : %d", __PRETTY_FUNCTION__, displaywidth, displayheight);
     glGenRenderbuffersOES(1, &mDepthRenderbuffer);
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, mDepthRenderbuffer);
     glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_DEPTH_COMPONENT16_OES, backingWidth, backingHeight);
@@ -121,8 +130,6 @@ CAEAGLLayer *eaglLayer;
         printf( "Failed to make complete framebuffer object %x", glCheckFramebufferStatusOES( GL_FRAMEBUFFER_OES ) );
 		assert( 0 );
     }
-	
-    return self;
 }
 
 - (void) handleTouches:(UIEvent*)event {
@@ -297,11 +304,7 @@ CAEAGLLayer *eaglLayer;
 //	printf( "touchesCancelled\n" );
 	[self handleTouches:event];
 }
-
-
-
 @end
-
 
 @implementation EAGLView (UITextFieldDelegate)
 

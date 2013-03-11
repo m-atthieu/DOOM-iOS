@@ -219,7 +219,7 @@ void EmailConsole()
 #endif	
 	
 	//call the mail app
-	NSURL *url = [[NSURL alloc] initWithString:[[NSString alloc] initWithCString:buffer]];
+	NSURL *url = [[NSURL alloc] initWithString: [[NSString alloc] initWithCString: buffer]];
 	[[UIApplication sharedApplication] openURL:url];
 	
 	free(buffer);

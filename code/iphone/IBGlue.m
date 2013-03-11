@@ -11,10 +11,12 @@
 
 
 #include "IBGlue.h"
-#import "doomAppDelegate.h"
+#import "DoomAppDelegate.h"
 #include "doomiphone.h"
 
 // Tells Interface Builder to go to the Main Menu.
-void IB_GotoMainMenu() {
-    [ gAppDelegate MainMenu];
+void IB_GotoMainMenu()
+{
+    DoomAppDelegate* delegate = (DoomAppDelegate*) [[UIApplication sharedApplication] delegate];
+    [delegate.controller switchToMenu: main_menu];
 }

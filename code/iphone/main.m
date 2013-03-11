@@ -26,6 +26,8 @@ extern char iphoneAppDirectory[1024];
 extern int myargc;
 extern char **myargv;
 
+@class DoomAppDelegate;
+
 int main(int argc, char *argv[]) {
 	// save for doom
 	myargc = argc;
@@ -43,7 +45,7 @@ int main(int argc, char *argv[]) {
 	}
 	
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, nil);
+    int retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([DoomAppDelegate class]));
     [pool release];
     return retVal;
 }

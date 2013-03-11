@@ -31,7 +31,7 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 */
 @interface EAGLView : UIView <UITextFieldDelegate> {
 @public
-	UITextField *textField;
+	UITextField     *textField;
     
     GLuint          mViewRenderbuffer; 
 	GLuint          mViewFramebuffer;
@@ -42,7 +42,7 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
     GLint backingWidth;
     GLint backingHeight;
     
-  
+    CAEAGLLayer* eaglLayer;
 }
 
 @end
