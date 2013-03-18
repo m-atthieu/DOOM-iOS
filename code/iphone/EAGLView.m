@@ -109,12 +109,15 @@ float screenResolutionScale = 1.0f;
 		return ;//nil;
 	}
 
+    /* I don't know why the screen is not in landscape orientation.
+     * And I don't know either why it gets translated after I do the rotation
+     * but here is a fix. :(
+     */
     CGAffineTransform rotation = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(90));
-    CGAffineTransform translation = CGAffineTransformMakeTranslation(80, -80);
+    [eaglLayer setAffineTransform: rotation];
+    CGAffineTransform translation = CGAffineTransformMakeTranslation(- self.layer.frame.origin.x, - self.layer.frame.origin.y);
     CGAffineTransform transform = CGAffineTransformConcat(rotation, translation);
     [eaglLayer setAffineTransform: transform];
-    //[eaglLayer setFrame: CGRectMake(0, 0, 480, 240)];
-
     
     glGenFramebuffersOES(1, &mViewFramebuffer);
     glGenRenderbuffersOES(1, &mViewRenderbuffer);

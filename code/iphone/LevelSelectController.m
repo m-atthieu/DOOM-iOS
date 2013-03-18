@@ -32,8 +32,6 @@
 {
     [super viewDidLoad];
     [self initialize];
-    [self setEpisode: 0];
-	// Do any additional setup after loading the view.
 }
 
 - (void) didReceiveMemoryWarning
@@ -48,13 +46,13 @@
     
     [levelScroller setContentSize: CGSizeMake(levelScroller.bounds.size.width, CGRectGetMaxY(lastElement.frame))];
         
-    [ playButton setEnabled: NO ];
-    [ playLabel setEnabled: NO ];
+    [playButton setEnabled: NO];
+    [playLabel  setEnabled: NO];
     
     selectedMap = nil;
     episodeSelected = -1;
     mapSelected = -1;
-    
+    levelSelected = -1;
 }
 
 /*- (void) awakeFromNib
@@ -91,12 +89,6 @@
     
 }
 
-- (void) setEpisode: (int) episode
-{
-    
-    levelScroller.alpha = 1.0f;
-}
-
 #pragma mark - IBActions
 - (IBAction) backToMain
 {
@@ -104,10 +96,7 @@
     [self.container switchToMenu: main_menu];
     
     //Sound_StartLocalSound( "iphone/controller_down_01_SILENCE.wav" );
-    
 }
-
-
 
 - (IBAction) UpMission
 {
@@ -127,29 +116,26 @@
     if (levelScroller.contentOffset.y < 300 ){
         [levelScroller setContentOffset: CGPointMake(xOffset, yOffset + 50 ) animated:YES];
     }
-    
 }
 
 - (IBAction) Play
 {
-    
     int skillLevel = [self getSkill];
     
     //[self.container playMap: 0: episodeSelected: mapSelected: skillLevel ];
-    [self.container playMap: 0 : 1 : 1 : skillLevel ];
-    
+    [self.container playMap: 0 : 0 : levelSelected : skillLevel ];
 }
 
 // Difficulty Setting
--(IBAction)     EasyPressed {
-    
+- (IBAction) EasyPressed
+{
     [self resetDifficulty];
     
     Sound_StartLocalSound( "iphone/controller_down_01_SILENCE.wav" );
 }
 
--(IBAction)     MediumPressed {
-    
+- (IBAction) MediumPressed
+{
     easySelection.hidden        = YES;
     mediumSelection.hidden      = NO;
     hardSelection.hidden        = YES;
@@ -179,7 +165,7 @@
     Sound_StartLocalSound( "iphone/controller_down_01_SILENCE.wav" );
 }
 
--(IBAction)     NightmarePressed{
+- (IBAction) NightmarePressed{
     
     easySelection.hidden        = YES;
     mediumSelection.hidden      = YES;
@@ -195,17 +181,17 @@
 }
 
 - (void) selectLevel: (int) level
-//- (void) playMap: (int) dataset: (int) episode: (int) map
 {
-    [ playButton setEnabled: YES ];
-    [ playLabel setEnabled: YES ];
+    levelSelected = level;
+
+    [playButton setEnabled: YES];
+    [playLabel  setEnabled: YES];
     
     if( selectedMap != nil ) {
-        [ selectedMap setEnabled: YES ];
+        [selectedMap setEnabled: YES];
     }
-    
-    //selectedMap = (UIFontButton *)[ self viewWithTag: mapTag ];
-    //[selectedMap setEnabled: NO];
+    selectedMap = (UIFontButton*)[self.view viewWithTag: level];
+    [selectedMap setEnabled: NO];
     
     Sound_StartLocalSound( "iphone/controller_down_01_SILENCE.wav" );
 }

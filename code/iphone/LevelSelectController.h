@@ -21,25 +21,26 @@ enum skill_t {
 @interface LevelSelectController : MenuViewController
 {
 
-    IBOutlet UIScrollView * levelScroller;
-    IBOutlet UIButton *     lastElement;
+    IBOutlet UIScrollView* levelScroller;
+    IBOutlet UIButton*     lastElement;
 
-    IBOutlet UIImageView *   easySelection;
-    IBOutlet UIImageView *   mediumSelection;
-    IBOutlet UIImageView *   hardSelection;
-    IBOutlet UIImageView *   NightmareSelection;
+    IBOutlet UIImageView*   easySelection;
+    IBOutlet UIImageView*   mediumSelection;
+    IBOutlet UIImageView*   hardSelection;
+    IBOutlet UIImageView*   NightmareSelection;
     
-    IBOutlet UIFontLabel *  easySelectionLabel;
-    IBOutlet UIFontLabel *  mediumSelectionLabel;
-    IBOutlet UIFontLabel *  hardSelectionLabel;
-    IBOutlet UIFontLabel *  nightmareSelectionLabel;
+    IBOutlet UIFontLabel*  easySelectionLabel;
+    IBOutlet UIFontLabel*  mediumSelectionLabel;
+    IBOutlet UIFontLabel*  hardSelectionLabel;
+    IBOutlet UIFontLabel*  nightmareSelectionLabel;
 
-    IBOutlet UIFontButton * playButton;
-    IBOutlet UIFontLabel * playLabel;
+    IBOutlet UIFontButton* playButton;
+    IBOutlet UIFontLabel*  playLabel;
 
-    UIFontButton * selectedMap;
+    UIFontButton* selectedMap;
     int episodeSelected;
     int mapSelected;
+    int levelSelected;
 }
 
 - (id)initWithContainer: (MetaViewController*) container;

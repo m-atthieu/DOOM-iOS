@@ -286,17 +286,6 @@
     [self switchToMenu: control_menu];
     [displayLink setPaused: YES];
     IBMenuVisible = YES;
-    /*[Self PrepareForViewSwap];
-    
-    ControlsMenuView * menu = (ControlsMenuView*) controlsMenuViewController.view;
-    [ menu SetOptions];
-    
-    // Switch to the Game View.
-    [self.view addSubview: controlsMenuViewController.view];
-    //[window makeKeyAndVisible];
-    
-    */
-    
 }
 
 - (void) SettingsMenu
@@ -304,20 +293,11 @@
     [self switchToMenu: settings_menu];
     [displayLink setPaused: YES];
     IBMenuVisible = YES;
-    /*SettingsMenuView * menu = (SettingsMenuView*) settingsMenuViewController.view;
-    [menu resetSwitches];
-    
-    // Switch to the Game View.
-    [self.view addSubview: settingsMenuViewController.view];
-    //[window makeKeyAndVisible];
-    
-    */
 }
 
-
 #pragma mark Play
-
-- (void) ResumeGame {
+- (void) ResumeGame
+{
     
     ResumeGame();
     [self switchToMenu: game_control];
