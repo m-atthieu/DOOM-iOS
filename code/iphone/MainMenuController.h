@@ -32,6 +32,7 @@
 - (IBAction) ShowSettingsBanner;
 - (IBAction) ShowAboutBanner;
 - (IBAction) ShowExtrasBanner;
+- (IBAction) showGameCenter: (id)sender;
 
 - (void) ResetMenu;
 

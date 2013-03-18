@@ -19,6 +19,7 @@
     BOOL isHidden;
 }
 
+- (void) display: (BOOL) display;
 - (void) Hide;
 - (void) Show;
 

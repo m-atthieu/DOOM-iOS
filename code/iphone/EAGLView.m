@@ -52,6 +52,13 @@ float screenResolutionScale = 1.0f;
     return self;
 }
 
+- (id) initWithFrame: (CGRect) frame
+{
+    self = [super initWithFrame: frame];
+    [self initialize];
+    return self;
+}
+
 //The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 - (id) initWithCoder: (NSCoder*) coder
 {
@@ -60,6 +67,8 @@ float screenResolutionScale = 1.0f;
 	[self initialize];
     return self;
 }
+
+#define DEGREES_TO_RADIANS(x) (M_PI * (x) / 180.0)
 
 - (void) initialize
 {
@@ -90,8 +99,8 @@ float screenResolutionScale = 1.0f;
                                         [NSNumber numberWithBool: NO], kEAGLDrawablePropertyRetainedBacking,
                                         kEAGLColorFormatRGB565, kEAGLDrawablePropertyColorFormat,
                                         nil];
-	
-	context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+	   
+	context = [[EAGLContext alloc] initWithAPI: kEAGLRenderingAPIOpenGLES1];
 	assert( context );
 	
 	if ( ![EAGLContext setCurrentContext: context]) {
@@ -99,6 +108,13 @@ float screenResolutionScale = 1.0f;
         NSLog(@"%s : Cannot set EAGLContext", __PRETTY_FUNCTION__);
 		return ;//nil;
 	}
+
+    CGAffineTransform rotation = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(90));
+    CGAffineTransform translation = CGAffineTransformMakeTranslation(80, -80);
+    CGAffineTransform transform = CGAffineTransformConcat(rotation, translation);
+    [eaglLayer setAffineTransform: transform];
+    //[eaglLayer setFrame: CGRectMake(0, 0, 480, 240)];
+
     
     glGenFramebuffersOES(1, &mViewFramebuffer);
     glGenRenderbuffersOES(1, &mViewRenderbuffer);
@@ -116,7 +132,7 @@ float screenResolutionScale = 1.0f;
     
     displaywidth = backingHeight;
     displayheight = backingWidth;
-    NSLog(@"%s displaywidth : %d displayheight : %d", __PRETTY_FUNCTION__, displaywidth, displayheight);
+    //NSLog(@"%s displaywidth : %d displayheight : %d", __PRETTY_FUNCTION__, displaywidth, displayheight);
     glGenRenderbuffersOES(1, &mDepthRenderbuffer);
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, mDepthRenderbuffer);
     glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_DEPTH_COMPONENT16_OES, backingWidth, backingHeight);

@@ -31,6 +31,8 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    [self initialize];
+    [self setEpisode: 0];
 	// Do any additional setup after loading the view.
 }
 
@@ -44,7 +46,7 @@
 {
     [self resetDifficulty ];
     
-    [levelScroller setContentSize:CGSizeMake(levelScroller.bounds.size.width, CGRectGetMaxY(lastElement.frame))];
+    [levelScroller setContentSize: CGSizeMake(levelScroller.bounds.size.width, CGRectGetMaxY(lastElement.frame))];
         
     [ playButton setEnabled: NO ];
     [ playLabel setEnabled: NO ];
@@ -55,10 +57,10 @@
     
 }
 
-- (void) awakeFromNib
+/*- (void) awakeFromNib
 {
     [self initialize];
-}
+}*/
 
 #pragma mark - 
 - (enum skill_t)  getSkill {
@@ -89,7 +91,8 @@
     
 }
 
-- (void) setEpisode: (int) episode {
+- (void) setEpisode: (int) episode
+{
     
     levelScroller.alpha = 1.0f;
 }

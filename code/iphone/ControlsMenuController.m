@@ -7,6 +7,7 @@
 //
 
 #import "ControlsMenuController.h"
+#import "doomiphone.h"
 
 @interface ControlsMenuController ()
 
@@ -14,7 +15,7 @@
 
 @implementation ControlsMenuController
 
-- (id)initWithContainer: (MetaViewController*) container
+- (id) initWithContainer: (MetaViewController*) container
 {
     self = [super initWithNibName: @"ControlsMenuView"
                            bundle: [NSBundle mainBundle]];
@@ -24,13 +25,13 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -40,7 +41,7 @@
 
 - (void) SetOptions
 {
-    /*movestickSize.value = stickMove->value / 255;
+    movestickSize.value = stickMove->value / 255;
     turnstickSize.value = stickTurn->value / 255;
     tiltMoveSpeed.value = tiltMove->value;
     tiltTurnSpeed.value = tiltTurn->value;
@@ -57,22 +58,23 @@
         singleThumbButton.enabled = YES;
         dualThumbButton.enabled = YES;
         dirWheelButton.enabled = NO;
-    }*/
+    }
 }
 
-- (IBAction) BackToMain {
+- (IBAction) BackToMain
+{
     [self.container MainMenu];
     Sound_StartLocalSound( "iphone/controller_down_01_SILENCE.wav" );
 }
 
-- (IBAction) HudLayoutPressed {
-    
+- (IBAction) HudLayoutPressed
+{
     [self.container HUDLayout];
 }
 
 - (IBAction) SingleThumbpadPressed {
     
-    /*Cvar_SetValue( controlScheme->name, 0 );
+    Cvar_SetValue( controlScheme->name, 0 );
     HudSetForScheme( 0 );
     
     if( controlScheme->value == 0 ) {
@@ -88,12 +90,11 @@
         dualThumbButton.enabled = YES;
         dirWheelButton.enabled = NO;
     }
-    */
 }
 
 - (IBAction) DualThumbpadPressed {
     
-    /*Cvar_SetValue( controlScheme->name, 1 );
+    Cvar_SetValue( controlScheme->name, 1 );
     HudSetForScheme( 1 );
     
     if( controlScheme->value == 0 ) {
@@ -108,11 +109,11 @@
         singleThumbButton.enabled = YES;
         dualThumbButton.enabled = YES;
         dirWheelButton.enabled = NO;
-    }*/
+    }
 }
 
-- (IBAction) DirWheelPressed {
-    /*
+- (IBAction) DirWheelPressed
+{
     Cvar_SetValue( controlScheme->name, 2 );
     HudSetForScheme( 2 );
     
@@ -128,46 +129,44 @@
         singleThumbButton.enabled = YES;
         dualThumbButton.enabled = YES;
         dirWheelButton.enabled = NO;
-    }*/
+    }
 }
 
-- (IBAction) MoveStickValChanged {
-    
-    //Cvar_SetValue( stickMove->name, movestickSize.value * 256.0f );
-    
+- (IBAction) MoveStickValChanged
+{
+    Cvar_SetValue( stickMove->name, movestickSize.value * 256.0f );
 }
 
-- (IBAction) TurnStickValChanged {
-    
-    //Cvar_SetValue( stickTurn->name, turnstickSize.value * 256.0f );
+- (IBAction) TurnStickValChanged
+{
+    Cvar_SetValue( stickTurn->name, turnstickSize.value * 256.0f );
 }
 
-- (IBAction) TiltMoveValChanged {
-    /*Cvar_SetValue( tiltMove->name, tiltMoveSpeed.value );
+- (IBAction) TiltMoveValChanged
+{
+    Cvar_SetValue( tiltMove->name, tiltMoveSpeed.value );
     
     if ( tiltMove->value == 100 ) {
-		Cvar_SetValue( tiltMove->name, 0 );
+	Cvar_SetValue( tiltMove->name, 0 );
         tiltMoveSpeed.value = tiltMove->value;
-	}
-	if ( tiltMove->value ) {
-		Cvar_SetValue( tiltTurn->name, 0 );
+    }
+    if ( tiltMove->value ) {
+	Cvar_SetValue( tiltTurn->name, 0 );
         tiltTurnSpeed.value = tiltTurn->value;
-	}
-    */
-    
-    
+    }
 }
 
-- (IBAction) TiltTurnValChanged {
-    /*Cvar_SetValue( tiltTurn->name, tiltTurnSpeed.value );
+- (IBAction) TiltTurnValChanged
+{
+    Cvar_SetValue( tiltTurn->name, tiltTurnSpeed.value );
     
     if ( tiltTurn->value == 1500 ) {
-		Cvar_SetValue( tiltTurn->name, 0 );
+	Cvar_SetValue( tiltTurn->name, 0 );
         tiltTurnSpeed.value = tiltTurn->value;
-	}
-	if ( tiltTurn->value ) {
-		Cvar_SetValue( tiltMove->name, 0 );
+    }
+    if ( tiltTurn->value ) {
+	Cvar_SetValue( tiltMove->name, 0 );
         tiltMoveSpeed.value = tiltMove->value;
-	}*/
+    }
 }
 @end

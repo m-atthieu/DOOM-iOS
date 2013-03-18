@@ -9,16 +9,12 @@
 #import "Banner.h"
 
 @implementation Banner_SubItem
-
-
-
 @end
-
-
 
 @implementation Banner_SubMenu
 
-- (void) awakeFromNib {
+- (void) awakeFromNib
+{
     isHidden = YES;
 }
 
@@ -32,7 +28,17 @@
     return nil;
 }
 
-- (void) Hide {
+- (void) display: (BOOL) display
+{
+    if(display){
+        [self Show];
+    } else {
+        [self Hide];
+    }
+}
+
+- (void) Hide
+{
     
     if( !isHidden ) {
         

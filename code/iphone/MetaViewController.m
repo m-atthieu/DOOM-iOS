@@ -7,12 +7,14 @@
 //
 #import "../doomiphone.h"
 
+#import "ControlsMenuController.h"
 #import "GameViewController.h"
 #import "LegalMenuController.h"
 #import "LevelSelectController.h"
 #import "MainMenuController.h"
 #import "SettingsMenuController.h"
-#import "EAGLView.h"
+
+//#import "EAGLView.h"
 //#import "ControlsMenuView.h"
 //#import "MapMenuView.h"
 //#import "SettingsMenuView.h"
@@ -21,13 +23,14 @@
 
 @interface MetaViewController ()
 - (void) initDisplayLink;
+- (void) initializeGameController;
 - (MenuViewController*) mainMenu;
 @end
 
 @implementation MetaViewController
 
-@synthesize glView;
-@synthesize displayLink;
+//@synthesize glView;
+//@synthesize displayLink;
 
 #pragma mark - life cycle
 
@@ -36,7 +39,8 @@
     self = [super initWithNibName: @"MetaView" bundle: [NSBundle mainBundle]];
     if (self) {
         // Custom initialization
-        [self initializeGameView];
+        [self initializeGameController];
+        //[self initializeGameView];
         [self initDisplayLink];
     }
     return self;
@@ -57,7 +61,7 @@
 
 - (void) dealloc
 {
-    [glView release];
+    //[glView release];
     [super dealloc];
 }
 
@@ -95,15 +99,22 @@
     return levelMenuViewController;
 }
 
-- (UIViewController*) gameController
+- (MenuViewController*) controlMenu
+{
+    if(controlsMenuViewController == nil){
+	controlsMenuViewController = [[ControlsMenuController alloc] initWithContainer: self];
+    }
+    return controlsMenuViewController;
+}
+
+- (void) initializeGameController
 {
     if(gameViewController == nil){
         gameViewController = [[GameViewController alloc] init];
     }
-    return gameViewController;
 }
 
-- (EAGLView*) initializeGameView
+/*- (EAGLView*) initializeGameView
 {
     if(glView == nil){
         UIViewController* controller = [self gameController];
@@ -111,7 +122,7 @@
         //glView = [[EAGLView alloc] init];
     }
     return glView;
-}
+}*/
 
 #pragma mark - container controller
 
@@ -123,10 +134,12 @@
         case    legal_menu: controller = [self legalMenu];      break;
         case settings_menu: controller = [self settingsMenu];   break;
         case    level_menu: controller = [self levelMenu];      break;
-        case  game_control: controller = [self gameController]; break;
+        case  control_menu: controller = [self controlMenu];    break;
+        case  game_control: controller = gameViewController;    break;
         default: break;
     }
     [self displayContentController: controller];
+    //[self cycleFromViewController: currentController toViewController: controller];
 }
 
 - (void) displayContentController: (UIViewController*) content
@@ -144,12 +157,11 @@
     [content removeFromParentViewController];
 }
 
-/*
-- (void) cycleFromViewController: (UIViewController*) oldC
+/*- (void) cycleFromViewController: (UIViewController*) oldC
                 toViewController: (UIViewController*) newC
 {
     [oldC willMoveToParentViewController:nil];                        // 1
-    [self addChildViewController:newC];
+    [self addChildViewController: newC];
     
     newC.view.frame = [self newViewStartFrame];                       // 2
     CGRect endFrame = [self oldViewEndFrame];
@@ -165,14 +177,13 @@
                                 [oldC removeFromParentViewController];                   // 5
                                 [newC didMoveToParentViewController:self];
                             }];
-}*/
+			    }*/
 
 #pragma mark - orientation
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft)
-    || (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
+{
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 #pragma mark - display link
@@ -193,7 +204,7 @@
     [self pauseDisplayLink: YES];
 }
 
-#pragma mark - 
+#pragma mark - Switch between Controllers
 
 #define __UNUSED__ NSLog(@"%s __unused__", __PRETTY_FUNCTION__)
 
@@ -209,58 +220,153 @@
     [episodeMenuViewController.view removeFromSuperview];
 }
 
-- (void) ResumeGame {
-    
-    ResumeGame();
-    [self switchToMenu: game_control];
-    return;
-    // Switch to the Game View.
-    [self.view addSubview: glView];
-    //[window makeKeyAndVisible];
-    
-    [displayLink setPaused: NO];
-    IBMenuVisible = NO;
-}
-
-- (void) MainMenu {
-    
-    [self PrepareForViewSwap];
-    
-    // Switch to the Game View.
-    MenuViewController* main = [self mainMenu];
-    UIView* view = main.view;
-    [self.view addSubview: view];
-    //[window makeKeyAndVisible];
+- (void) MainMenu
+{
+    [self switchToMenu: main_menu];
     iphonePauseMusic();
     
     [displayLink setPaused: YES];
     IBMenuVisible = YES;
-}
 
-- (void) DemoGame {
-    
-    StartDemoGame( false );
+    /*[self PrepareForViewSwap];
     
     // Switch to the Game View.
-    [self.view addSubview:glView];
+    MenuViewController* main = [self mainMenu];
+    UIView* view = main.view;
+    [self.view addSubview: view];*/
     //[window makeKeyAndVisible];
     
+}
+
+- (void) CreditsMenu
+{
+    [self switchToMenu: credits_menu];
+    [displayLink setPaused: YES];
+    IBMenuVisible = YES;
+    //[self PrepareForViewSwap];
+    
+    // Switch to the Game View.
+    //[self.view addSubview: creditsMenuViewController.view];
+    //[window makeKeyAndVisible];
+    
+    
+    
+}
+
+- (void) LegalMenu
+{
+    [self switchToMenu: legal_menu];
+    [displayLink setPaused: YES];
+    IBMenuVisible = YES;
+
+    //[self PrepareForViewSwap];
+    
+    // Switch to the Game View.
+    //[self.view addSubview: legalMenuViewController.view];
+    //[window makeKeyAndVisible];
+}
+
+#pragma mark - Submenus Actions
+
+- (void) GotoSupport {
+    
+    SysIPhoneOpenURL("http://www.idsoftware.com/doom-classic/index.html");
+    
+}
+
+- (void) idSoftwareApps {
+    
+    SysIPhoneOpenURL("http://itunes.com/apps/idsoftware");
+}
+
+#pragma mark Settings
+
+- (void) ControlsMenu 
+{
+    [self switchToMenu: control_menu];
+    [displayLink setPaused: YES];
+    IBMenuVisible = YES;
+    /*[Self PrepareForViewSwap];
+    
+    ControlsMenuView * menu = (ControlsMenuView*) controlsMenuViewController.view;
+    [ menu SetOptions];
+    
+    // Switch to the Game View.
+    [self.view addSubview: controlsMenuViewController.view];
+    //[window makeKeyAndVisible];
+    
+    */
+    
+}
+
+- (void) SettingsMenu
+{
+    [self switchToMenu: settings_menu];
+    [displayLink setPaused: YES];
+    IBMenuVisible = YES;
+    /*SettingsMenuView * menu = (SettingsMenuView*) settingsMenuViewController.view;
+    [menu resetSwitches];
+    
+    // Switch to the Game View.
+    [self.view addSubview: settingsMenuViewController.view];
+    //[window makeKeyAndVisible];
+    
+    */
+}
+
+
+#pragma mark Play
+
+- (void) ResumeGame {
+    
+    ResumeGame();
+    [self switchToMenu: game_control];
     [displayLink setPaused: NO];
     IBMenuVisible = NO;
 }
 
-- (void) NewGame {
-    [self switchToMenu: level_menu];
-    return;
-    [self PrepareForViewSwap];
+/*- (void) DemoGame {
+    
+    StartDemoGame( false );
     
     // Switch to the Game View.
-    [self.view addSubview: episodeMenuViewController.view];
+    //[self.view addSubview:glView];
     //[window makeKeyAndVisible];
     
+    [displayLink setPaused: NO];
+    IBMenuVisible = NO;
+}*/
+
+- (void) NewGame {
+    [self switchToMenu: level_menu];
     [displayLink setPaused: YES];
     IBMenuVisible = YES;
+}
+
+- (void) MultiplayerGame
+{
+    // Go to the MP Menu.
+    // get the address for the local service, which may
+    // start up a bluetooth personal area network
+    boolean serverResolved = ResolveNetworkServer( &netServer.address );
     
+    // open our socket now that the network interfaces have been configured
+    // Explicitly open on interface 1, which is en0.  If bluetooth ever starts
+    // working better, we can handle multiple interfaces.
+    if ( gameSocket <= 0 ) {
+        gameSocket = UDPSocket( "en0", DOOM_PORT );
+    }
+    
+    // get the address for the local service
+    if ( !serverResolved ) {
+        // nobody else is acting as a server, so start one here
+        RegisterGameService();
+        SetupEmptyNetGame();
+    }
+	
+    menuState = IPM_MULTIPLAYER;
+    
+    [self HideIB];
 }
 
 - (void) playMap: (int) dataset: (int) episode: (int) map: (int) skill {
@@ -276,107 +382,24 @@
     [self HideIB];
 }
 
-- (void) CreditsMenu {
-    
-    [self PrepareForViewSwap];
-    
-    // Switch to the Game View.
-    [self.view addSubview: creditsMenuViewController.view];
-    //[window makeKeyAndVisible];
-    
-    [displayLink setPaused: YES];
-    IBMenuVisible = YES;
-    
-}
 
-- (void) LegalMenu {
-    
-    [self PrepareForViewSwap];
-    
-    // Switch to the Game View.
-    [self.view addSubview: legalMenuViewController.view];
-    //[window makeKeyAndVisible];
-    
-    [displayLink setPaused: YES];
-    IBMenuVisible = YES;
-    
-}
+#pragma mark ??
 
-- (void) GotoSupport {
-    
-    SysIPhoneOpenURL("http://www.idsoftware.com/doom-classic/index.html");
-    
-}
-
-- (void) idSoftwareApps {
-    
-    SysIPhoneOpenURL("http://itunes.com/apps/idsoftware");
-}
-
-- (void) ControlsMenu {
-    
-    /*[self PrepareForViewSwap];
-    
-    ControlsMenuView * menu = (ControlsMenuView*) controlsMenuViewController.view;
-    [ menu SetOptions];
-    
-    // Switch to the Game View.
-    [self.view addSubview: controlsMenuViewController.view];
-    //[window makeKeyAndVisible];
-    
-    [displayLink setPaused: YES];
-    IBMenuVisible = YES;*/
-    
-}
-
-- (void) SettingsMenu {
-    
-    [self PrepareForViewSwap];
-    
-    /*SettingsMenuView * menu = (SettingsMenuView*) settingsMenuViewController.view;
-    [menu resetSwitches];
-    
-    // Switch to the Game View.
-    [self.view addSubview: settingsMenuViewController.view];
-    //[window makeKeyAndVisible];
-    
-    [displayLink setPaused: YES];
-    IBMenuVisible = YES;
-    */
-}
-
-- (void) HUDLayout {
-    
+- (void) HUDLayout 
+{
     menuState = IPM_HUDEDIT;
-    
     [self HideIB];
 }
 
-- (void) HideIB {
-    
-    [self PrepareForViewSwap];
-    
-    // Switch to the Game View.
-    [self.view addSubview: glView];
-    //[window makeKeyAndVisible];
-    
-    [displayLink setPaused: NO];
+- (void) hideIBAndPause: (BOOL) pause
+{
+    [self switchToMenu: game_control];
+    [displayLink setPaused: pause];
     IBMenuVisible = NO;
 }
 
-- (void) SelectEpisode: (int) episode {
-    
-    /*[self PrepareForViewSwap];
-    
-    [ (MapMenuView*)mapMenuViewController.view setEpisode: episode ];
-    
-    // Switch to the Game View.
-    [self.view addSubview: mapMenuViewController.view];
-    //[window makeKeyAndVisible];
-    
-    [displayLink setPaused: YES];
-    IBMenuVisible = YES;
-    */
+- (void) HideIB
+{
+    [self hideIBAndPause: NO];
 }
-
 @end

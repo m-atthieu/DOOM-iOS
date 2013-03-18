@@ -14,10 +14,16 @@
 #import <Foundation/Foundation.h>
 
 @interface ControlsMenuView : UIView 
+{
+    IBOutlet UISlider* movestickSize;
+    IBOutlet UISlider* turnstickSize;
+    IBOutlet UISlider* tiltMoveSpeed;
+    IBOutlet UISlider* tiltTurnSpeed;
+}
 
-
-- (void) SetupSlider:(UISlider*)slider minimumTrack:(UIImage*)minImage
-        maximumTrack:(UIImage*)maxImage
-               thumb:(UIImage*)thumbImage;
+- (void) SetupSlider: (UISlider*) slider
+        minimumTrack: (UIImage*) minImage
+        maximumTrack: (UIImage*) maxImage
+               thumb: (UIImage*) thumbImage;
 
 @end

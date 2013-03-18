@@ -19,6 +19,7 @@ enum controller_t {
     control_menu,
     settings_menu,
     legal_menu,
+    credits_menu,
     level_menu,
     game_control
 } ;
@@ -33,19 +34,16 @@ enum controller_t {
     MenuViewController* controlsMenuViewController;
     MenuViewController* episodeMenuViewController;
     MenuViewController* levelMenuViewController;
-    
-    BOOL    IBMenuVisible;
-    
-    /* GameView */
     GameViewController* gameViewController;
-    EAGLView* glView;
     CADisplayLink * displayLink;
+
+    BOOL    IBMenuVisible;
 }
 
-@property (nonatomic, retain) IBOutlet EAGLView *glView;
-@property (nonatomic, retain) IBOutlet CADisplayLink *displayLink;
+//@property (nonatomic, retain) CADisplayLink *displayLink;
 
-- (void) SelectEpisode: (int) episode;
+//- (void) SelectEpisode: (int) episode;
+/* */
 - (void) PrepareForViewSwap;
 - (void) ResumeGame;
 - (void) NewGame;
@@ -53,11 +51,13 @@ enum controller_t {
 - (void) MainMenu;
 - (void) CreditsMenu;
 - (void) LegalMenu;
-- (void) playMap: (int) dataset : (int) episode : (int) map : (int) skill;
 - (void) GotoSupport;
 - (void) idSoftwareApps;
 - (void) SettingsMenu;
 - (void) ControlsMenu;
+
+- (void) playMap: (int) dataset : (int) episode : (int) map : (int) skill;
+
 - (void) HUDLayout;
 - (void) HideIB;
 

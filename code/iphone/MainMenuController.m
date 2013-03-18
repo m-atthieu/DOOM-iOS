@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    [self ResetMenu];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,106 +38,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - 
-- (void) initialize{
-    
-    // Hide Everything.
-    [self ResetMenu];
-    
+- (void) ResetMenu
+{
+    [mPlaySubMenu display: NO];
+    [mSettingsSubMenu display: NO];
+    [mAboutSubMenu display: NO];
+    [mExtrasSubMenu display: NO];
 }
 
-- (void)awakeFromNib {
-    
-    [self initialize];
-    
-}
+#pragma mark - Switch to Other Controllers
 
-- (void) ResetMenu {
-    
-    
-}
-
-
-- (IBAction) ResumeGamePressed {
-    
+#pragma mark Play Submenu
+- (IBAction) ResumeGamePressed
+{
     [self.container ResumeGame];
-    
     Sound_StartLocalSound( "iphone/baborted_01.wav" );
 }
 
-- (IBAction) NewGamePressed {
-    
+- (IBAction) NewGamePressed
+{
     // Go to the Map Menu.
     [self.container NewGame];
-    
     Sound_StartLocalSound( "iphone/baborted_01.wav" );
-    
 }
 
-- (IBAction) MultiplayerPressed {
-    
-    // Go to the MP Menu.
-    // get the address for the local service, which may
-    // start up a bluetooth personal area network
-    boolean serverResolved = ResolveNetworkServer( &netServer.address );
-    
-    // open our socket now that the network interfaces have been configured
-    // Explicitly open on interface 1, which is en0.  If bluetooth ever starts
-    // working better, we can handle multiple interfaces.
-    if ( gameSocket <= 0 ) {
-        gameSocket = UDPSocket( "en0", DOOM_PORT );
-    }
-    
-    // get the address for the local service
-    if ( !serverResolved ) {
-        // nobody else is acting as a server, so start one here
-        RegisterGameService();
-        SetupEmptyNetGame();
-    }
-	
-    menuState = IPM_MULTIPLAYER;
-    
-    [self.container HideIB];
-    
-    Sound_StartLocalSound( "iphone/baborted_01.wav" );
-    
-}
-
-- (IBAction) CreditsPressed
+/* a deplacer dans le container */
+- (IBAction) MultiplayerPressed
 {
-    [self.container CreditsMenu];
-    
+    [self.container MultiplayerGame];
     Sound_StartLocalSound( "iphone/baborted_01.wav" );
+    
 }
 
-- (IBAction) SupportPressed
-{
-    [self.container GotoSupport];
-    
-    Sound_StartLocalSound( "iphone/baborted_01.wav" );
-}
-
-- (IBAction) LegalPressed
-{
-    [self.container switchToMenu: legal_menu];
-    //[self.container LegalMenu];
-    
-    //Sound_StartLocalSound( "iphone/baborted_01.wav" );
-}
-
-- (IBAction) DemoPressed {
-    [self.container DemoGame ];
-    
-    Sound_StartLocalSound( "iphone/baborted_01.wav" );
-}
-
-- (IBAction) OtherIdGamesPressed {
-    
-    [self.container idSoftwareApps];
-    
-    Sound_StartLocalSound( "iphone/baborted_01.wav" );
-}
-
+#pragma mark Settings Submenu
 - (IBAction) ControlsOptionsPressed
 {
     [self.container switchToMenu: control_menu];
@@ -150,56 +83,72 @@
     //Sound_StartLocalSound( "iphone/baborted_01.wav" );
 }
 
-- (void) ShowPlayBanner {
-    
-    [ mPlayButton setEnabled: NO ];
-    [ mSettingsButton setEnabled: YES ];
-    [ mAboutButton setEnabled: YES ];
-    [ mExtrasButton setEnabled: YES ];
-    
-    [ mPlaySubMenu Show ];
-    [ mSettingsSubMenu Hide ];
-    [ mExtrasSubMenu Hide ];
-    [ mAboutSubMenu Hide ];
-    
+#pragma mark About Submenu
+
+- (IBAction) CreditsPressed
+{
+    [self.container CreditsMenu];
+    Sound_StartLocalSound( "iphone/baborted_01.wav" );
 }
 
-- (void) ShowSettingsBanner {
-    
-    [ mPlayButton setEnabled: YES ];
-    [ mSettingsButton setEnabled: NO ];
-    [ mAboutButton setEnabled: YES ];
-    [ mExtrasButton setEnabled: YES ];
-    
-    [ mSettingsSubMenu Show ];
-    [ mPlaySubMenu Hide ];
-    [ mExtrasSubMenu Hide ];
-    [ mAboutSubMenu Hide ];
+- (IBAction) SupportPressed
+{
+    [self.container GotoSupport];
+    Sound_StartLocalSound( "iphone/baborted_01.wav" );
 }
 
-- (void) ShowAboutBanner {
-    
-    [ mPlayButton setEnabled: YES ];
-    [ mSettingsButton setEnabled: YES ];
-    [ mAboutButton setEnabled: NO ];
-    [ mExtrasButton setEnabled: YES ];
-    
-    [ mAboutSubMenu Show ];
-    [ mPlaySubMenu Hide ];
-    [ mSettingsSubMenu Hide ];
-    [ mExtrasSubMenu Hide ];
+- (IBAction) LegalPressed
+{
+    [self.container switchToMenu: legal_menu];
+    //Sound_StartLocalSound( "iphone/baborted_01.wav" );
 }
 
-- (void) ShowExtrasBanner {
+#pragma mark Extras Submenu
+
+- (IBAction) OtherIdGamesPressed
+{
+    [self.container idSoftwareApps];
+    Sound_StartLocalSound( "iphone/baborted_01.wav" );
+}
+/*- (IBAction) DemoPressed
+{
+    [self.container DemoGame ];
+    Sound_StartLocalSound( "iphone/baborted_01.wav" );
+    }*/
+
+
+#pragma mark - Sub Menus
+
+- (void) disableAllBannerExcept: (Banner_SubMenu*) banner andButton: (UIFontButton*) button
+{
+    [ mPlayButton setEnabled: (mPlayButton != button) ];
+    [ mSettingsButton setEnabled: (mSettingsButton != button) ];
+    [ mAboutButton setEnabled: (mAboutButton != button) ];
+    [ mExtrasButton setEnabled: (mExtrasButton != button) ];
     
-    [ mPlayButton setEnabled: YES ];
-    [ mSettingsButton setEnabled: YES ];
-    [ mAboutButton setEnabled: YES ];
-    [ mExtrasButton setEnabled: NO ];
-    
-    [ mExtrasSubMenu Show ];
-    [ mPlaySubMenu Hide ];
-    [ mSettingsSubMenu Hide ];
-    [ mAboutSubMenu Hide ];
+    [ mPlaySubMenu display: (banner == mPlaySubMenu) ];
+    [ mSettingsSubMenu display: (banner == mSettingsSubMenu) ];
+    [ mExtrasSubMenu display: (banner == mExtrasSubMenu) ];
+    [ mAboutSubMenu display: (banner == mAboutSubMenu) ];
+}
+
+- (void) ShowPlayBanner
+{
+    [self disableAllBannerExcept: mPlaySubMenu andButton: mPlayButton];
+}
+
+- (void) ShowSettingsBanner
+{
+    [self disableAllBannerExcept: mSettingsSubMenu andButton: mSettingsButton];
+}
+
+- (void) ShowAboutBanner
+{
+    [self disableAllBannerExcept: mAboutSubMenu andButton: mAboutButton];
+}
+
+- (void) ShowExtrasBanner
+{
+    [self disableAllBannerExcept: mExtrasSubMenu andButton: mExtrasButton];
 }
 @end

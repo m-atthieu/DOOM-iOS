@@ -11,15 +11,17 @@
 
 @interface ControlsMenuController : MenuViewController
 {
-    IBOutlet UISlider * movestickSize;
-    IBOutlet UISlider * turnstickSize;
-    IBOutlet UISlider * tiltMoveSpeed;
-    IBOutlet UISlider * tiltTurnSpeed;
+    IBOutlet UISlider* movestickSize;
+    IBOutlet UISlider* turnstickSize;
+    IBOutlet UISlider* tiltMoveSpeed;
+    IBOutlet UISlider* tiltTurnSpeed;
     
-    IBOutlet UIButton * singleThumbButton;
-    IBOutlet UIButton * dualThumbButton;
-    IBOutlet UIButton * dirWheelButton;
+    IBOutlet UIButton* singleThumbButton;
+    IBOutlet UIButton* dualThumbButton;
+    IBOutlet UIButton* dirWheelButton;
 }
+
+- (id)initWithContainer: (MetaViewController*) container;
 
 - (void)     SetOptions;
 
