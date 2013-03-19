@@ -659,7 +659,9 @@ void iphoneIntermission( wbstartstruct_t* wb ) {
 	}
 	if ( numsecrets >= wb->maxsecret ) {
 		cms->completionFlags[skill] |= MF_SECRETS;
-	}	
+	}
+	// Stats for GameCenter comes here
+	// Stats for Achivements come here
 }
 
 /*
