@@ -1,4 +1,4 @@
-//
+// -*- mode: objc -*-
 //  GameCenter.h
 //  Doom
 //

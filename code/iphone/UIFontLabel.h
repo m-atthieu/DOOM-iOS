@@ -11,9 +11,8 @@
 
 #import <Foundation/Foundation.h>
 
+//#define kFontLabelName @"idGinza Narrow"
+#define kFontLabelName @"Linesquare Rounded Extended"
 
-@interface UIFontLabel : UILabel {
-
-}
-
+@interface UIFontLabel : UILabel
 @end
