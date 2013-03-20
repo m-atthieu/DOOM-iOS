@@ -1,0 +1,19 @@
+Begin3
+Title:          qmus2mid
+Version:        2.0
+Entered-date:   08FEB96
+Description:    Quick MUS to MIDI converter
+                This is a simple Unix port of the DOS program.
+Keywords:       mus midi convert 
+Author:         bacquet@iie.cnam.fr (Sebastien Bacquet)
+Maintained-by:  hpv@kjemi.uio.no (Hans Peter Verne)
+Primary-site:   sunsite.unc.edu /pub/Linux/apps/sound/midi
+                qmus2mid-2.0.tar.gz
+                qmus2mid-2.0.lsm
+Alternate-site: 
+Original-site:  ftp.cdrom.com /pub/idgames/utils/sound_edit
+                qmus2mi2.zip
+Platforms:      Most any Little-Endian unix-like system, like x86-Linux.
+                MS-DOS
+Copying-policy: GPL
+End

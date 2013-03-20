@@ -1,0 +1,41 @@
+.TH QMUS2MID 1 "7 Feb 1996"
+.SH NAME
+qmus2mid \- Quick MUS to MIDI converter
+.SH SYNOPSIS
+\fBqmus2mid mus-file midi-file\fP [\fIOptions\fP]
+.SH DESCRIPTION
+\fBqmus2mid\fP reads the \fBmus-file\fP, converts to MIDI and writes 
+the \fBmidi-file\fP.  The \fBmidi-file\fP is ruthlessly overwritten 
+unless the \fI-noow\fP option is used.
+.SS Options
+Note that the options must come \fIafter\fP the two filenames.
+.TP
+\fB-noow\fP
+Do not overwrite the midi-file.
+.TP
+\fB-nodisp\fP
+Display nothing  (except errors)
+.TP
+\fB-nocomp\fP
+Don't compress !
+.TP
+\fB-size \fI###\fP
+Set the track buffer size to \fI###\fP (in KB). 
+.br
+Default = 64 KB
+.TP
+\fB-t \fI###\fP
+Ticks per quarter note. Default = 89
+.SH "SEE ALSO"
+playmidi(1)
+.SH NOTES
+This is a Unix version of the DOS program QMUS2MID. Some of the 
+functionality of the dos-version has been removed.
+.SH AUTHOR
+Sebastien Bacquet  ( bacquet@iie.cnam.fr )
+.br
+Unix port by Hans Peter Verne ( hpv@kjemi.uio.no )
+.SH BUGS
+Doesn't work on big-endian machines. 
+.br
+Maybe others...
