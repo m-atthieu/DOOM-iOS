@@ -125,19 +125,30 @@ MUSICS= music/d_intro.mp3  \
 
 all: doom2.wad base.iPack
 
-assets/sounds/%.wav: freedoom/sounds/ds%.wav
-	cp -L $< $@
-
-music/%.mp3: freedoom/musics/%.mid
-	timidity $< -OrUS1 -s 44.1kHz -o - | lame -r -m s --bitwidth 16 -s 44.1 - $@
-	#timidity $< -Ow -o - | lame -b 128 - $@
-
 music/%.mid: freedoom/musics/%.mus
 	qmus2mid $< $@
 
+assets/sounds/%.wav: freedoom/sounds/ds%.wav
+	cp -L $< $@
+
+LAME=lame -r -b 128
+#TIMIDITY_OPTS=-OrUS1 -s 44.1kHz
+TIMIDITY_OPTS=-Ow
+
+music/%.mp3: freedoom/musics/%.mid
+	timidity $< ${TIMIDITY_OPTS} -o $(subst .mid,.wav,$<) 
+	${LAME} $(subst .mid,.wav,$<) $@
+	rm -f $(subst .mid,.wav,$<)
+
 music/%.mp3: music/%.mid
-	#timidity $< -Ow -o - | lame -b - $@
-	timidity $< -OrUS1 -s 44.1kHz -o - | lame -r -m s --bitwidth 16 -s 44.1 - $@
+	timidity $< ${TIMIDITY_OPTS} -o $(subst .mid,.wav,$<) 
+	${LAME} $(subst .mid,.wav,$<) $@
+	rm -f $(subst .mid,.wav,$<)
+
+%.mp3: %.mid
+	timidity $< ${TIMIDITY_OPTS} -o $(subst .mid,.wav,$<) 
+	${LAME} $(subst .mid,.wav,$<) $@
+	rm -f $(subst .mid,.wav,$)<
 
 doom2.wad: freedoom/wads/doom2.wad
 	cp $< $@
@@ -147,7 +158,3 @@ assets: $(ASSETS) $(SOUNDS) $(MUSICS)
 base.iPack: assets
 	cd ../doomtool && ./doomtool
 
-%.mp3: %.mid
-	#timidity $< -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k $@
-	#timidity $< -Ow -o - | lame - -b 64 $@
-	timidity $< -OrUS1 -s 44.1kHz -o - | lame -r -m s --bitwidth 16 -s 44.1 - $@
