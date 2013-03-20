@@ -90,27 +90,64 @@ SOUNDS= assets/sounds/barexp.wav \
 	assets/sounds/vipain.wav \
 	assets/sounds/wpnup.wav
 
-MUSIC= assets/music/d_intro.mp3
+MUSICS= music/d_intro.mp3  \
+	music/d_adrian.mp3 \
+	music/d_ampie.mp3  \
+	music/d_betwee.mp3 \
+	music/d_count2.mp3 \
+	music/d_countd.mp3 \
+	music/d_ddtbl2.mp3 \
+	music/d_ddtbl3.mp3 \
+	music/d_ddtblu.mp3 \
+	music/d_dead.mp3   \
+	music/d_dead2.mp3  \
+	music/d_doom.mp3   \
+	music/d_doom2.mp3  \
+	music/d_evil.mp3   \
+	music/d_in_cit.mp3 \
+	music/d_messag.mp3 \
+	music/d_messg2.mp3 \
+	music/d_openin.mp3 \
+	music/d_romer2.mp3 \
+	music/d_romero.mp3 \
+	music/d_runni2.mp3 \
+	music/d_runnin.mp3 \
+	music/d_shawn.mp3  \
+	music/d_shawn2.mp3 \
+	music/d_shawn3.mp3 \
+	music/d_stalks.mp3 \
+	music/d_stlks2.mp3 \
+	music/d_stlks3.mp3 \
+	music/d_tense.mp3  \
+	music/d_theda2.mp3 \
+	music/d_theda3.mp3 \
+	music/d_ultima.mp3
+
+all: doom2.wad base.iPack
 
 assets/sounds/%.wav: freedoom/sounds/ds%.wav
 	cp -L $< $@
 
-assets/music/d_intro.mp3: freedoom/musics/tobester/d_introa.mid
-	mkdir -p assets/music/
-	timidity $< -Ow -o - > temp.wav
-	cat temp.wav | lame -b 128 - $@
-	rm temp.wav
+music/%.mp3: freedoom/musics/%.mid
+	timidity $< -OrUS1 -s 44.1kHz -o - | lame -r -m s --bitwidth 16 -s 44.1 - $@
+	#timidity $< -Ow -o - | lame -b 128 - $@
 
-all: doom2.wad base.iPack
+music/%.mid: freedoom/musics/%.mus
+	qmus2mid $< $@
+
+music/%.mp3: music/%.mid
+	#timidity $< -Ow -o - | lame -b - $@
+	timidity $< -OrUS1 -s 44.1kHz -o - | lame -r -m s --bitwidth 16 -s 44.1 - $@
 
 doom2.wad: freedoom/wads/doom2.wad
 	cp $< $@
 
-assets: $(ASSETS) $(SOUNDS) $(MUSIC)
+assets: $(ASSETS) $(SOUNDS) $(MUSICS)
 
 base.iPack: assets
 	cd ../doomtool && ./doomtool
 
 %.mp3: %.mid
 	#timidity $< -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k $@
-	timidity $< -Ow -o - | lame - -b 64 $@
+	#timidity $< -Ow -o - | lame - -b 64 $@
+	timidity $< -OrUS1 -s 44.1kHz -o - | lame -r -m s --bitwidth 16 -s 44.1 - $@
