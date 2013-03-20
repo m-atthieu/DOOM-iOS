@@ -224,10 +224,10 @@ int I_GetSfxLumpNum (sfxinfo_t *sfx) {
 	// find the pkWav_t for this sfxinfo
 	char	upper[16], *d = upper;
 	for ( const char *c = sfx->name ; *c ; c++ ) {
-		*d++ = toupper( *c );
+        *d++ = tolower( *c );
 	}
 	*d = 0;
-	pkWav_t *pkwav = PK_FindWav( va( "newsfx/DS%s.wav", upper ) );	
+	pkWav_t *pkwav = PK_FindWav( va( "sounds/%s.wav", upper ) );
 	
 	return pkwav - pkWavs;
 }
